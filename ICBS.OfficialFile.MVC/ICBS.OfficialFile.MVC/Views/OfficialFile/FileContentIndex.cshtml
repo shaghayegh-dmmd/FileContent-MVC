@@ -1,0 +1,575 @@
+﻿@using ICBS.OfficialFile.MVC
+@using ICBS.OfficialFile.BLL.OfficialFileServiceReference
+@using Kendo.Mvc.UI;
+@model  ICBS.OfficialFile.MVC.Models.OfficialFileContentModel
+@using ICBS.OfficialFile.MVC.Models;
+
+@{
+    ViewBag.Title = "FileContentIndex";
+    Layout = null;
+    @Styles.Render("~/Content/css/style")
+    @Styles.Render("~/Content/kendo/css")
+    @Styles.Render("~/Content/LTE")
+    @Styles.Render("~/Content/jquery.Bootstrap-PersianDateTimePicker.css")
+    @Styles.Render("~/Content/CSSDatePicker/bootstrap-datepicker.min.css")
+    @Styles.Render("~/Content/bootstrap-rtl.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/LTE")
+    @Scripts.Render("~/bundles/DialogBox")
+    @Scripts.Render("~/bundles/date")
+    @Scripts.Render("~/bundles/Javascript")
+}
+
+<script>
+
+        function DataLog() {
+
+
+            return {
+                fileType: null,
+            };
+            DoSearch();
+
+        }
+
+
+    $("#btnNew").click(function () {
+        doEmpty();
+        $("#Edite").removeClass("flexEdite");
+        $("#ActionAgainstAgentDefinerContainer").addClass("flexNew");
+    })
+    //Edite---------------------------------------------------------------------------------------------------------------------------------------------
+
+    function rowId() {
+        $("#ActionAgainstAgentDefinerContainer").removeClass("flexNew");
+        $("#Edite").addClass("flexEdite");
+
+            var grid = $("#AttachmentGrid").data("kendoGrid");
+
+            var rows = grid.select();
+            var dataItem = grid.dataItem(rows);
+
+            var Id = dataItem.Id;
+
+
+            $.ajax({
+                url: '@Url.Action("GetFileContentById", "OfficialFile")' + "?id=" + Id,
+                type: 'POST',
+                dataType: "json",
+                success: function (res) {
+                    $('#txtENewDescription').val(res.Description);
+                    $('#txtENewFileName').val(res.FileName);
+                    var Gdropdownlist = $("#txtENewSubjectType").data("kendoDropDownList");
+                    Gdropdownlist.select(function (dataItem) {
+                        return dataItem.Value === res.SubjectType;
+                    });
+                }
+
+            });
+    }
+
+
+
+        function OnClick(btn) {
+            if (btn == "بله") {
+                var grid = $("#AttachmentGrid").data("kendoGrid");
+
+                var rows = grid.select();
+                var dataItem = grid.dataItem(rows);
+
+                var Id = dataItem.Id;
+
+                 $.getJSON('@Url.Action("EditeFileContent", "OfficialFile")' + '?id=@ViewData["GetFileContentById"]' +
+                    Id +
+                    "&SubjectType=" +
+                     $('#txtENewSubjectType').val() +
+                     "&FileName=" +
+                     $('#txtENewFileName').val() +
+                    "&Description=" +
+                    $('#txtENewDescription').val(),
+                    function (result) {
+                        if (result) {
+                            ShowDialog("توجه", "ویرایش با موفقیت انجام شد", "DialogInformation", ["بستن"], null);
+                            Ref();
+                        }
+                     });
+                $("#Edite").removeClass("flexEdite");
+            }
+        }
+
+    $("#btnEditContact").click(function () {
+        ShowDialog("توجه", "آیا می خواهید کاربر را ویرایش کنید ", "DialogConfirm", ["بله", "خیر"], OnClick);
+    });
+
+//Delete---------------------------------------------------------------------------------------------------------------------------------------------
+
+    function DeleteFile(btn) {
+        var grid = $("#AttachmentGrid").data("kendoGrid");
+
+        var rows = grid.select();
+        var dataItem = grid.dataItem(rows);
+
+        var Id = dataItem.Id;
+
+          if (btn == "بله")
+            $.getJSON('@Url.Action("DeleteFileContent", "OfficialFile")' + '?id= @ViewData["GetFileContentById"]' + Id, function (result) {
+                if (result) {
+                    ShowDialog("توجه", "حذف با موفقیت انجام شد", "DialogInformation", ["بستن"], null);
+
+                    $('#txtENewDescription').val('');
+                    $('#txtENewFileName').val('');
+                    $('#txtENewSubjectType').val('');
+                    $("#Edite").removeClass("flexEdite");
+                    Ref();
+                }
+            });
+    }
+    $("#btnDelete").click(function () {
+        ShowDialog("توجه", "آیا می خواهید کاربر را حذف کنید ؟", "DialogConfirm", ["بله", "خیر"], DeleteFile);
+    });
+</script>
+
+<section class="gridAll">
+    @(Html.Kendo().Grid<OfficialFileContentModel>()
+    .Name("AttachmentGrid")
+    .HtmlAttributes(new { style = "height:250px;" }).Scrollable(a => a.Height("auto"))
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Id).Hidden();
+        columns.Bound(p => p.FileName).Title("نام").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+        columns.Bound(p => p.Description).Title("توضیحات").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+        columns.Bound(p => p.UpdateDateStr).Title("تاریخ آخرین به روزرسانی").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+        columns.Bound(p => p.SubjectType).Hidden();
+        columns.Bound(p => p.FileSize).ClientTemplate("#=data.FileSize# + <span>بایت</span>").Title("سایز فایل").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+        columns.Bound(u => u.SystemFileType).Title("دانلود فایل").HeaderHtmlAttributes(new { style = "text-align: center;" }).ClientTemplate("#=GetImage(data.SystemFileType, data.Id, data.FileName)#").HtmlAttributes(new { style = "text-align: center; display: flex; justify-content: center; align-items: flex-start;" }).Width(90);
+
+
+    })
+    .Selectable(s => s.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Row))
+    .Sortable()
+    .Filterable()
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .ButtonCount(5)
+    )
+    .Events(e => e.Change("rowId"))
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .Read(read => read.Action("GetAllFileContent", "OfficialFile").Data("DataLog"))
+    .PageSize(15)
+    )
+    )
+
+</section>
+<div style="text-align: right; width:100%; margin-top:20px;">
+
+    <button id="btnNew" type="button" class="k-button pre-scrollable fa-plus" value="New">
+        جدید
+    </button>
+
+</div>
+
+<div id="Edite">
+    <div class="Edit" style="width:100%;">
+
+        <div>
+            <table style="width:100%">
+
+                <tr>
+                    <td style="text-align:right">
+                        نام فایل:
+                    </td>
+                    <td style="text-align:right;">
+                        @*@Html.TextBox("txtENewFileName", "", new { Tittle = "عنوان", style = "width: 195px; height: 30px;" })*@
+                        @(Html.Kendo().TextBox().Name("txtENewFileName").HtmlAttributes(new { id = "txtENewFileName", Tittle = "عنوان:" }))
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        توضیحات:
+                    </td>
+                    <td style="text-align:right;">
+                        @*@Html.TextBox("txtENewDescription", "", new { Tittle = "عنوان", style = "width: 195px; height: 30px;" })*@
+                        @(Html.Kendo().TextBox().Name("txtENewDescription").HtmlAttributes(new { id = "txtENewDescription", Tittle = "توضیحات:" }))
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">
+                        موضوع فایل:
+                    </td>
+                    <td style="text-align:right;">
+
+
+                        @(Html.Kendo().DropDownList().Name("txtENewSubjectType").DataTextField("Text").DataValueField("Value").DataSource(source =>
+                              {
+                                  source.Read(read =>
+                                  {
+                                      read.Action("FileType", "OfficialFile");
+                                  });
+                              }))
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: right; width:100%; margin-top:7%;">
+
+            <button id="btnCancelEdit" type="button" class="k-button" value="Cancel">
+                انصراف
+            </button>
+            <button id="btnDelete" type="button" onclick="DeleteFile" class="k-button" value="Delete">
+                حذف
+            </button>
+            <button id="btnEditContact" type="button" onclick="OnClick" class="k-button" value="Edit" style="width: 75px;">
+                ثبت
+            </button>
+        </div>
+    </div>
+
+
+</div>
+
+<section id="ActionAgainstAgentDefinerContainer">
+    @using (Html.BeginForm("Save", "OfficialFile", FormMethod.Post, new { id = "IdCreatFileContent" }))
+    {
+        <span id="form-validation" style="width:0px">
+            @Html.ValidationSummary()
+        </span>
+        <div class="box-body" id="maindiv" style="width:100%;">
+            <div class="container-fluid" style="width:100%;">
+                <div class="row" style="width:100%;">
+
+                    @Html.HiddenFor(m => m.Id)
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 form-group">
+                        @Html.LabelFor(m => m.FileName, new { @class = "colon required-star" })
+
+                        @(Html.Kendo().TextBoxFor(m => m.FileName).Name("FileName").HtmlAttributes(new { id = "clearFileName" }))
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 form-group">
+                        @Html.LabelFor(m => m.Description, new { @class = "colon required-star" })
+                        @(Html.Kendo().TextBoxFor(m => m.Description).Name("Description").HtmlAttributes(new { id = "clearDescription" }))
+
+                    </div>
+
+
+
+                    <div class="clearfix visible-md"></div>
+                    <div class="clearfix visible-lg"></div>
+                    <div class="col-sm-12 form-group">
+                        @Html.LabelFor(m => m.SubjectType, new { @class = "colon required-star" })
+
+                        @(Html.Kendo().DropDownListFor(m => m.SubjectType).Name("SubjectType").OptionLabel("انتخاب کنید").DataTextField("Text").DataValueField("Value").DataSource(source =>
+                    {
+                        source.Read(read =>
+                        {
+                            read.Action("FileType", "OfficialFile");
+                        });
+
+                    })
+
+    )
+
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 form-group">
+
+
+                        @(Html.Kendo().Upload()
+                          .Name("file")
+                          .Multiple(false)
+                          .Messages(s =>
+                          {
+                              s.InvalidFiles("نوع فایل انتخاب شده صحیح نمی باشد");
+                              s.StatusUploaded("بارگزاری فایل با موفقیت انجام شد");
+                              s.StatusUploading("در حال بارگزاری");
+                              s.StatusFailed("بارگزاری فایل با شکست مواجه شد");
+                          })
+                          .Validation(validation =>
+                          {
+                              validation.MaxFileSize(150000000);
+                              validation.AllowedExtensions(new string[] { "jpg", "jpeg", "png", "tiff", "tif", "pdf", "docx", "doc", "xlsx", "xls", "txt", "mp4", "mkv", "avi", "mov", "mp3", "wmv", "svg", "rar", "pptx", "ppsx" });
+                          })
+                          .Async(a => a
+                              .Save("Async_Save", "OfficialFile")
+                              .Remove("Async_Delete", "OfficialFile")
+                              .AutoUpload(true)
+                          )
+                                )
+                    </div>
+                    <div class="col-sm-12" style="margin-right: 8%; width:100%; text-align:right; margin-top: 50px;">
+                        <button id="btn-saveActionAgainstAgentDefiner" type="button" class="k-button k-insert">
+                            ثبت
+                        </button>
+                        <button id="btn-cancelActionAgainstAgentDefiner" type="button" class="k-button k-cancel">
+                            انصراف
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+<script>
+
+
+
+
+    /*do download-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+     kendo.culture("fa");
+     var dict = [];
+
+    function GetImage(image, id, fileName) {
+        if (image != null && image !== "") {
+            var returnString = "";
+            dict.push({
+                    key:   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    value: "docx"
+                },
+                {
+                    key:   "application/msword",
+                    value: "doc"
+                },
+                {
+                    key:   "application/vnd.ms-excel",
+                    value: "xls"
+                },
+                {
+                    key:   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    value: "xlsx"
+                },
+                {
+                    key:   "application/pdf",
+                    value: "pdf"
+                },
+                {
+                    key:   "image/png",
+                    value: "png"
+                },
+                {
+                    key:   "image/jpeg",
+                    value: "jpg"
+                },
+                {
+                    key:   "image/svg+xml",
+                    value: "svg"
+                },
+                {
+                    key: "video/mp4",
+                    value: "mp4"
+                },
+                {
+                    key: "application/octet-stream",
+                    value: "rar"
+                },
+                {
+                    key: "audio/mpeg",
+                    value: "mp3"
+                },
+                {
+                    key: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                    value: "pptx"
+                },
+                {
+                    key:   "image/tiff",
+                    value: "tiff"
+                });
+
+            var type = "";
+
+            for (var i = 0; i < dict.length ; i++) {
+                if (dict[i].key == image)
+                    type = dict[i].value;
+            }
+
+            switch (type) {
+            case "png":
+            case "jpg":
+            case "tiff":
+            case "tif":
+            case "svg":
+            case "bmp":
+
+                returnString = '<img src="@Url.Content("~/Content/Images/image.png")" title=\"image\" height=\"20\" alt=\"image\"/> <a />';
+                    break;
+
+            case "mp4":
+            case "mkv":
+            case "mov":
+
+                returnString = '<img src="@Url.Content("~/Content/Images/multimedia.png")" title=\"image\" height=\"20\" alt=\"image\"/> <a />';
+                break;
+
+            case "docx":
+            case "doc":
+            case "txt":
+
+                returnString = '<img src="@Url.Content("~/Content/Images/microsoftword.png")" title=\"image\" height=\"20\" alt=\"image\"/>';
+                break;
+
+            case "xlsx":
+            case "xls":
+                returnString = '<img src="@Url.Content("~/Content/Images/microsoftexcel.png")" title=\"image\" height=\"20\" alt=\"image\"/>';
+                break;
+
+            case "pdf":
+                    returnString = '<img src="@Url.Content("~/Content/Images/PDF.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                    break;
+
+
+            case "rar":
+                    returnString = '<img src="@Url.Content("~/Content/Images/rar-file-format.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                break;
+
+            case "mp3":
+                    returnString = '<img src="@Url.Content("~/Content/Images/voice-recorder.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                break;
+
+            case "pptx":
+            case "ppsx":
+                    returnString = '<img src="@Url.Content("~/Content/Images/power.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                break;
+
+            }
+            returnString = returnString + '<a style="margin-right: 10px" href=/OfficialFile/GetAttachedFile?attachmentId=' + id + '>' + '<i class="fa fa-download" aria-hidden="true"></i></a>';
+            return returnString;
+        }
+
+        return "";
+    }
+    /*ShowProgressbar-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    function ShowProgressbar(second = 200) {
+            $("#ajaxLoading").show();
+        }
+        function HideProgressbar() {
+            $("#ajaxLoading").hide();
+        }
+
+
+
+    /*do Upload-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    function doSubmit(actionName, controllerName, data) {
+        var btn = $('#btn-saveActionSanctionsReconsideration');
+        //btn.prop("disabled", true);
+        //ShowProgressbar();
+        $.ajax({
+            url: '@Url.Content("~/")' + controllerName + '/' + actionName,
+            data: data,
+            type: 'POST',
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                doEmpty();
+                if (res.IsValid) {
+                    ShowDialog("توجه", " با موفقیت انجام شد", "DialogInformation", ["بستن"], null);
+                    if (res.IsSaved) {
+                        window.ShowInfoMessage(res.Message);
+                        //formEntityId = res.Id;
+                        //IsSavedEntity = true;
+                        //showClearBtn();
+                        //LoadMenu();
+                    } else {
+                        window.ShowErrorMessage(res.Message);
+                        IsSavedEntity = false;
+                    }
+                } else {
+                    if (res.errors){
+                        showAllErrors(res.errors);
+                        IsSavedEntity = false;
+                    }
+                    else{
+                        window.ShowErrorMessage(res.Message);
+                        IsSavedEntity = false;
+                    }
+                }
+            },
+            error: function () {
+                HideProgressbar();
+                btn.prop("disabled", false);
+                IsSavedEntity = false;
+                window.ShowErrorMessage("خطا در ذخیره سازی");
+            }
+        });
+        Ref();
+    }
+
+    $('#btn-saveActionAgainstAgentDefiner').click(function (ev) {
+
+        ev.preventDefault();
+        var data = $('#IdCreatFileContent').serialize();
+
+        doSubmit("Save", "OfficialFile", data);
+
+        Ref();
+    });
+    /*do Empty-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    function doEmpty(){
+        $("#clearFileName").val('');
+        $("#clearDescription").val('');
+        $("#SubjectType").data("kendoDropDownList").value("0");
+        $(".k-upload-files").remove(".k-upload-files k-reset").remove();
+        $("strong.k-upload-status.k-upload-status-total").remove(".k-upload-status").remove();
+    }
+    /*do Cancel-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    function doCancel() {
+
+
+            $("#ActionAgainstAgentDefinerContainer").removeClass("flexNew");
+            $("#Edite").removeClass("flexEdite");
+    }
+
+    $("#btnCancelEdit").click(function () {
+        doCancel();
+    });
+
+    $("#btn-cancelActionAgainstAgentDefiner").click(doCancel());
+
+    $("#btn-cancelActionAgainstAgentDefiner").click(function () {
+        doEmpty();
+        doCancel();
+
+    });
+
+    /*do delete-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    $("#btn-deleteActionAgainstAgentDefiner").click(function () {
+        ShowDialog("توجه", "آیا می خواهید اطلاعات را حذف کنید ", "DialogConfirm", ["بله", "خیر"], DeleteClickActionAgainstAgentDefiner);
+    });
+    function DeleteClickActionAgainstAgentDefiner(btn) {
+        if (btn === "بله")
+            doDelete("DeleteFileContent", "OfficialFile",@Model.Id);
+    }
+
+
+
+
+
+    function DoSearch() {
+        $('#AttachmentGrid').data('kendoGrid').dataSource.data([]);
+        $('#AttachmentGrid').data('kendoGrid').dataSource.read();
+        $('#AttachmentGrid').data('kendoGrid').refresh();
+
+    }
+
+    function Ref() {
+
+        $('#AttachmentGrid').data('kendoGrid').dataSource.data([]);
+        $('#AttachmentGrid').data('kendoGrid').dataSource.read();
+        $('#AttachmentGrid').data('kendoGrid').refresh();
+
+    }
+    </script>
+

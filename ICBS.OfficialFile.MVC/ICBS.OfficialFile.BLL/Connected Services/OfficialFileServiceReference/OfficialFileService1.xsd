@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ICBS.OfficialFile.WCFDAL.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ICBS.OfficialFile.WCFDAL.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:64858/OfficialFileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="OfficialFileContentModelSVC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatorUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileContent" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileSerial" type="ser:guid" />
+      <xs:element minOccurs="0" name="FileSize" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="SubjectType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SystemFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SystemFileType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateUserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OfficialFileContentModelSVC" nillable="true" type="tns:OfficialFileContentModelSVC" />
+  <xs:complexType name="ArrayOfOfficialFileContentModelSVC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfficialFileContentModelSVC" nillable="true" type="tns:OfficialFileContentModelSVC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOfficialFileContentModelSVC" nillable="true" type="tns:ArrayOfOfficialFileContentModelSVC" />
+  <xs:complexType name="AccessFileContentModelSVC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileContentId" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Link" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserList" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccessFileContentModelSVC" nillable="true" type="tns:AccessFileContentModelSVC" />
+  <xs:complexType name="ArrayOfAccessFileContentModelSVC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccessFileContentModelSVC" nillable="true" type="tns:AccessFileContentModelSVC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccessFileContentModelSVC" nillable="true" type="tns:ArrayOfAccessFileContentModelSVC" />
+</xs:schema>

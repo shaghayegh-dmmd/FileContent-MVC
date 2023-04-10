@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="ICBS.OfficialFile.WCF.OfficialFileService" CodeBehind="OfficialFileService.svc.cs" %>

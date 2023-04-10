@@ -1,0 +1,14 @@
+C:\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.csproj.CoreCompileInputs.cache
+C:\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\bin\Debug\ICBS.OfficialFile.BLL.dll.config
+C:\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\bin\Debug\ICBS.OfficialFile.BLL.dll
+C:\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\bin\Debug\ICBS.OfficialFile.BLL.pdb
+C:\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.dll
+C:\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.pdb
+C:\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.csprojAssemblyReference.cache
+J:\Sh.DostMohamadi\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\bin\Debug\ICBS.OfficialFile.BLL.dll.config
+J:\Sh.DostMohamadi\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\bin\Debug\ICBS.OfficialFile.BLL.dll
+J:\Sh.DostMohamadi\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\bin\Debug\ICBS.OfficialFile.BLL.pdb
+J:\Sh.DostMohamadi\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.csprojAssemblyReference.cache
+J:\Sh.DostMohamadi\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.csproj.CoreCompileInputs.cache
+J:\Sh.DostMohamadi\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.dll
+J:\Sh.DostMohamadi\Tfs-Msdev\SecurityAndFramework\ICBS.OfficialFile.MVC\ICBS.OfficialFile.BLL\obj\Debug\ICBS.OfficialFile.BLL.pdb

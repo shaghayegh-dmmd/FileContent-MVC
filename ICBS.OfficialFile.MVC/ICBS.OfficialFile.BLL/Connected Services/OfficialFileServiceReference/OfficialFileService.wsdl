@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OfficialFileService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:64858/OfficialFileService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:64858/OfficialFileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:64858/OfficialFileService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ICBS.OfficialFile.WCFDAL.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOfficialFileService_CreatCacheFileContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatCacheFileContent" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_CreatCacheFileContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatCacheFileContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_CreatFileContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatFileContent" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_CreatFileContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatFileContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_EditeFileContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditeFileContent" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_EditeFileContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditeFileContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_DeleteFileContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileContent" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_DeleteFileContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_GetAllFileContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileContent" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_GetAllFileContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_GetAttachment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttachment" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_GetAttachment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_AddFileContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFileContent" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_AddFileContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFileContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_CreatFileAccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatFileAccess" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_CreatFileAccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatFileAccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_EditeFileAccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditeFileAccess" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_EditeFileAccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditeFileAccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_DeleteFileAccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileAccess" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_DeleteFileAccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileAccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_GetAllFileAccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileAccess" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_GetAllFileAccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFileAccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_DownloadFileContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileContent" />
+  </wsdl:message>
+  <wsdl:message name="IOfficialFileService_DownloadFileContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileContentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IOfficialFileService">
+    <wsdl:operation name="CreatCacheFileContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/CreatCacheFileContent" message="tns:IOfficialFileService_CreatCacheFileContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/CreatCacheFileContentResponse" message="tns:IOfficialFileService_CreatCacheFileContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatFileContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/CreatFileContent" message="tns:IOfficialFileService_CreatFileContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/CreatFileContentResponse" message="tns:IOfficialFileService_CreatFileContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditeFileContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/EditeFileContent" message="tns:IOfficialFileService_EditeFileContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/EditeFileContentResponse" message="tns:IOfficialFileService_EditeFileContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFileContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/DeleteFileContent" message="tns:IOfficialFileService_DeleteFileContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/DeleteFileContentResponse" message="tns:IOfficialFileService_DeleteFileContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/GetAllFileContent" message="tns:IOfficialFileService_GetAllFileContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/GetAllFileContentResponse" message="tns:IOfficialFileService_GetAllFileContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/GetAttachment" message="tns:IOfficialFileService_GetAttachment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/GetAttachmentResponse" message="tns:IOfficialFileService_GetAttachment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFileContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/AddFileContent" message="tns:IOfficialFileService_AddFileContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/AddFileContentResponse" message="tns:IOfficialFileService_AddFileContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatFileAccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/CreatFileAccess" message="tns:IOfficialFileService_CreatFileAccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/CreatFileAccessResponse" message="tns:IOfficialFileService_CreatFileAccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditeFileAccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/EditeFileAccess" message="tns:IOfficialFileService_EditeFileAccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/EditeFileAccessResponse" message="tns:IOfficialFileService_EditeFileAccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFileAccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/DeleteFileAccess" message="tns:IOfficialFileService_DeleteFileAccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/DeleteFileAccessResponse" message="tns:IOfficialFileService_DeleteFileAccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileAccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/GetAllFileAccess" message="tns:IOfficialFileService_GetAllFileAccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/GetAllFileAccessResponse" message="tns:IOfficialFileService_GetAllFileAccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOfficialFileService/DownloadFileContent" message="tns:IOfficialFileService_DownloadFileContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOfficialFileService/DownloadFileContentResponse" message="tns:IOfficialFileService_DownloadFileContent_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IOfficialFileService" type="tns:IOfficialFileService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreatCacheFileContent">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/CreatCacheFileContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatFileContent">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/CreatFileContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditeFileContent">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/EditeFileContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFileContent">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/DeleteFileContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileContent">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/GetAllFileContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachment">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/GetAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFileContent">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/AddFileContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatFileAccess">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/CreatFileAccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditeFileAccess">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/EditeFileAccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFileAccess">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/DeleteFileAccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFileAccess">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/GetAllFileAccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileContent">
+      <soap:operation soapAction="http://tempuri.org/IOfficialFileService/DownloadFileContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OfficialFileService">
+    <wsdl:port name="BasicHttpBinding_IOfficialFileService" binding="tns:BasicHttpBinding_IOfficialFileService">
+      <soap:address location="http://localhost:64858/OfficialFileService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

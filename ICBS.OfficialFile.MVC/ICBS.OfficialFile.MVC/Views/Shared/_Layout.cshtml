@@ -1,0 +1,148 @@
+﻿@using Kendo.Mvc.UI;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css/style.css")
+    @Styles.Render("~/Content/kendo/css")
+    @Styles.Render("~/Content/LTE")
+    @Styles.Render("~/Content/jquery.Bootstrap-PersianDateTimePicker.css")
+    @Styles.Render("~/Content/CSSDatePicker/bootstrap-datepicker.min.css")
+    @Styles.Render("~/Content/bootstrap-rtl.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/LTE")
+    @Scripts.Render("~/bundles/DialogBox")
+    @Scripts.Render("~/bundles/date")
+    @Scripts.Render("~/bundles/Javascript")
+
+    <script>
+        kendo.culture("fa");
+        var baseUrl = "@(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~")))";
+    </script>
+
+</head>
+<body id="body" class="clear-fix  k-rtl">
+    <header class="main-headerS">
+        <div class="logo" id="logo">
+            <span>فایل های اعتبارسنجی </span>
+        </div>
+        <div class="menuBar">
+            <img src="~/Content/Images/menu.png" id="imgMenuBar" />
+        </div>
+    </header>
+    <aside class="main-sidebar" id="main-sidebar">
+        <section class="sidebar">
+            <ul id="menu-wrapper" class="sidebar-menu" data-widget="tree">
+            </ul>
+
+        </section>
+    </aside>
+    <div class="content-wrapper">
+
+        <div id="header-wrapper">
+
+        </div>
+
+        <div id="content-wrapper">
+        </div>
+        <div class="render-body">
+            <div id="ajaxLoading" class="transparentAjax">
+            </div>
+            @RenderBody()
+            @(Html.Kendo().Notification()
+      .Name("notification-message1")
+    )
+
+        </div>
+
+        <div id="ajaxLoading" class="transparentAjax">
+        </div>
+        @*<footer>
+                <div style="padding-top: 20px;font-size: 20px; text-align:center">
+                    <strong>
+                        « تمامی حقوق این سامانه متعلق به بانک سامان است »
+                    </strong>
+                </div>
+            </footer>*@
+    </div>
+    <footer class="main-footer text-center" style="color: gray; margin-right:230px;">
+
+        <div style="padding-top: 20px;font-size: 10px; text-align: center;">
+            <strong>
+                « تمامی حقوق این سامانه متعلق به بانک سامان است »
+            </strong>
+        </div>
+    </footer>
+
+</body>
+<script>
+    /*errorMsg-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        var msgNotification;
+        $(function () {
+            msgNotification = $("#notification-message1").data("kendoNotification");
+            $(function () {
+                var errors = [];
+                if ($("div.validation-summary-errors").length === 1) {
+                    $("div.validation-summary-errors> ul > li").each(function () {
+                        errors.push($(this).text());
+                    });
+                    showAllErrors(errors);
+                }
+            });
+        });
+        function ShowErrorMessage(txt) {
+            msgNotification.show(txt, "error");
+    }
+    /*loaderGif-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        function ShowProgressbar(second = 200) {
+            $("#ajaxLoading").show();
+        }
+        function HideProgressbar() {
+            $("#ajaxLoading").hide();
+        }
+
+
+    /*menu-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    $("#menu-wrapper").load("@Url.Action("LoadMenu", "Home")");
+
+    $("#imgMenuBar").click(function () {
+
+        if ($("#main-sidebar").is(":hidden")) {
+
+            $('#main-sidebar').show();
+            if ($(window).width() > 767) {
+                $('#logo').show();
+            } 
+            
+            $(".content-wrapper").css("margin-right", "230px");
+            $(".menuBar").css("margin-right", "230px");
+            $(".main-footer").css("margin-right", "230px");
+
+
+        }
+        else if ($('#main-sidebar').is(":visible")) {
+            $('#main-sidebar').hide();
+            if ($(window).width() > 767) {
+                $('#logo').hide();
+            } 
+            
+            $(".content-wrapper").css("margin-right", "0px");
+            $(".menuBar").css("margin-right", "0px");
+            $(".main-footer").css("margin-right", "0px");
+
+        }
+
+
+    });
+
+</script>
+
+</html>

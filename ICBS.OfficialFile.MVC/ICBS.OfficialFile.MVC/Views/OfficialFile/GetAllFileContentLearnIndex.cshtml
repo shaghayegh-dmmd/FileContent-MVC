@@ -1,0 +1,215 @@
+﻿@using ICBS.OfficialFile.MVC.Models;
+@using ICBS.OfficialFile.BLL.OfficialFileServiceReference;
+@using Kendo.Mvc.UI;
+
+@{
+    ViewBag.Title = "GetAllFileContentIndex";
+    Layout = null;
+    @Styles.Render("~/Content/css/style")
+    @Styles.Render("~/Content/kendo/css")
+    @Styles.Render("~/Content/LTE")
+    @Styles.Render("~/Content/jquery.Bootstrap-PersianDateTimePicker.css")
+    @Styles.Render("~/Content/CSSDatePicker/bootstrap-datepicker.min.css")
+    @Styles.Render("~/Content/bootstrap-rtl.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/LTE")
+    @Scripts.Render("~/bundles/DialogBox")
+    @Scripts.Render("~/bundles/date")
+    @Scripts.Render("~/bundles/Javascript")
+}
+<script>
+    function DataLog() {
+        return {
+            fileType: "Learn",
+        };
+        DoSearch();
+    }
+</script>
+<div id="grid" class="index-container container-fluid">
+    <div class="row">
+
+
+        <div class="index-grid-container">
+            <div class="index-grid-wrapper">
+                @(Html.Kendo().Grid<OfficialFileContentModel>()
+                      .Name("AttachmentGrid")
+                      .HtmlAttributes(new { style = "height:300px;" }).Scrollable(a => a.Height("auto"))
+                      .Columns(columns =>
+                      {
+                          columns.Bound(p => p.Id).Hidden();
+                          columns.Bound(p => p.FileName).Title("نام").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+                          columns.Bound(p => p.Description).Title("توضیحات").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+                          columns.Bound(p => p.UpdateDateStr).Title("تاریخ آخرین به روزرسانی").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+
+                          columns.Bound(p => p.SubjectType).Hidden();
+                          columns.Bound(p => p.FileSize).ClientTemplate("#=data.FileSize# + <span>بایت</span>").Title("سایز فایل").HeaderHtmlAttributes(new { style = "text-align: center;" }).HtmlAttributes(new { style = "text-align: center;" }).Width(130);
+                          columns.Bound(u => u.SystemFileType).Title("دانلود فایل").HeaderHtmlAttributes(new { style = "text-align: center;" }).ClientTemplate("#=GetImage(data.SystemFileType, data.Id, data.FileName)#").HtmlAttributes(new { style = "text-align: center; display: flex; justify-content: center; align-items: flex-start;" }).Width(90);
+
+                      })
+                      .Selectable(s => s.Mode(GridSelectionMode.Single))
+                      .Sortable()
+                      .Filterable()
+                      .Pageable(pageable => pageable
+                          .Refresh(true)
+                          .ButtonCount(5)
+                      )
+                      .DataSource(dataSource => dataSource
+                          .Ajax()
+                          .Read(read => read.Action("GetAllFileContent", "OfficialFile").Data("DataLog"))
+                          .PageSize(20)
+                          )
+                      )
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    /*do download-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    kendo.culture("fa");
+     var dict = [];
+
+    function GetImage(image, id, fileName) {
+        if (image != null && image !== "") {
+            var returnString = "";
+            dict.push({
+                    key:   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    value: "docx"
+                },
+                {
+                    key:   "application/msword",
+                    value: "doc"
+                },
+                {
+                    key:   "application/vnd.ms-excel",
+                    value: "xls"
+                },
+                {
+                    key:   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    value: "xlsx"
+                },
+                {
+                    key:   "application/pdf",
+                    value: "pdf"
+                },
+                {
+                    key:   "image/png",
+                    value: "png"
+                },
+                {
+                    key:   "image/jpeg",
+                    value: "jpg"
+                },
+                {
+                    key:   "image/svg+xml",
+                    value: "svg"
+                },
+                {
+                    key: "video/mp4",
+                    value: "mp4"
+                },
+                {
+                    key: "application/octet-stream",
+                    value: "rar"
+                },
+                {
+                    key: "audio/mpeg",
+                    value: "mp3"
+                },
+                {
+                    key: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                    value: "pptx"
+                },
+                {
+                    key:   "image/tiff",
+                    value: "tiff"
+                });
+
+            var type = "";
+
+            for (var i = 0; i < dict.length ; i++) {
+                if (dict[i].key == image)
+                    type = dict[i].value;
+            }
+
+            switch (type) {
+            case "png":
+            case "jpg":
+            case "tiff":
+            case "tif":
+            case "svg":
+            case "bmp":
+
+                returnString = '<img src="@Url.Content("~/Content/Images/image.png")" title=\"image\" height=\"20\" alt=\"image\"/> <a />';
+                    break;
+
+            case "mp4":
+            case "mkv":
+            case "mov":
+
+                returnString = '<img src="@Url.Content("~/Content/Images/multimedia.png")" title=\"image\" height=\"20\" alt=\"image\"/> <a />';
+                break;
+
+            case "docx":
+            case "doc":
+            case "txt":
+
+                returnString = '<img src="@Url.Content("~/Content/Images/microsoftword.png")" title=\"image\" height=\"20\" alt=\"image\"/>';
+                break;
+
+            case "xlsx":
+            case "xls":
+                returnString = '<img src="@Url.Content("~/Content/Images/microsoftexcel.png")" title=\"image\" height=\"20\" alt=\"image\"/>';
+                break;
+
+            case "pdf":
+                    returnString = '<img src="@Url.Content("~/Content/Images/PDF.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                    break;
+
+
+            case "rar":
+                    returnString = '<img src="@Url.Content("~/Content/Images/rar-file-format.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                break;
+
+            case "mp3":
+                    returnString = '<img src="@Url.Content("~/Content/Images/voice-recorder.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                break;
+
+            case "pptx":
+            case "ppsx":
+                    returnString = '<img src="@Url.Content("~/Content/Images/power.png")" title=\"image\" height=\"20\"  alt=\"image\"/>';
+                break;
+
+            }
+            returnString = returnString + '<a style="margin-right: 10px" href=/OfficialFile/GetAttachedFile?attachmentId=' + id + '>' + '<i class="fa fa-download" aria-hidden="true"></i></a>';
+            return returnString;
+        }
+
+        return "";
+    }
+    function DoSearch() {
+        $('#AttachmentGrid').data('kendoGrid').dataSource.data([]);
+        $('#AttachmentGrid').data('kendoGrid').dataSource.read();
+        $('#AttachmentGrid').data('kendoGrid').refresh();
+
+    }
+
+
+
+    function Ref() {
+
+        $('#AttachmentGrid').data('kendoGrid').dataSource.data([]);
+        $('#AttachmentGrid').data('kendoGrid').dataSource.read();
+        $('#AttachmentGrid').data('kendoGrid').refresh();
+
+    }
+
+
+</script>
+
+

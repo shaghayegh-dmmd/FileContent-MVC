@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d684e208-9e8c-4681-b80d-d88f299a43ad" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:64858/OfficialFileService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OfficialFileService.xsd" MetadataType="Schema" ID="10b2e169-9993-4fac-b43c-c6a103e221c3" SourceId="1" SourceUrl="http://localhost:64858/OfficialFileService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OfficialFileService1.xsd" MetadataType="Schema" ID="c6279963-c7e5-4c86-a4ff-f25b274294ff" SourceId="1" SourceUrl="http://localhost:64858/OfficialFileService.svc?xsd=xsd2" />
+    <MetadataFile FileName="OfficialFileService2.xsd" MetadataType="Schema" ID="d7aa3578-1167-44f8-8976-2e3628e54b71" SourceId="1" SourceUrl="http://localhost:64858/OfficialFileService.svc?xsd=xsd1" />
+    <MetadataFile FileName="OfficialFileService.wsdl" MetadataType="Wsdl" ID="caa7a954-c0b5-40fc-8d7c-50b9fb459950" SourceId="1" SourceUrl="http://localhost:64858/OfficialFileService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

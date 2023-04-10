@@ -1,0 +1,459 @@
+﻿@import url(fontiran.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
+body {
+    font-family: IRANSans !important;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6, input, textarea {
+    font-family: IRANSans !important;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.wrapper {
+    /*max-width: 900px;*/
+    margin: 0 auto;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+div#gridMsg {
+    width: 100% !important;
+}
+
+div#gridPerson {
+    width: 100% !important;
+}
+/*.main-sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 50px;
+    min-height: 100%;
+    width: 240px;
+    z-index: 810;
+    -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out,width .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out,width .3s ease-in-out;
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+}*/
+.main-sidebar {
+       position: absolute;
+    top: 50px!important;
+    right: 0;
+    padding-top: 0px;
+    min-height: 100%;
+    width: 230px!important;
+    z-index: 810;
+    -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out,width .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out,width .3s ease-in-out;
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+}
+
+
+/*<style >*/
+button#btnNew {
+    background: #367E18;
+    color: #fff;
+    font-weight: 500;
+}
+/*New & Edite*/
+.k-widget.k-upload.k-upload-async {
+    height: 50px !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+#ActionAgainstAgentDefinerContainer {
+    display: none;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+#Edite {
+    display: none;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding: 40px;
+}
+
+.flexEdite {
+    margin-top: 20px;
+    display: flex !important;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-end;
+}
+
+.k-widget.k-upload.k-upload-async.k-upload-empty {
+    background-color: transparent;
+    border: none;
+    color: transparent;
+}
+
+.k-dropzone .k-dropzone-hint {
+    display: none;
+}
+
+.k-dropzone {
+    padding: .8em;
+    padding-top: 1.8em !important;
+    padding-right: 0px !important;
+}
+
+.k-dropzone {
+    background-color: transparent !important;
+}
+
+#Edite tbody {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.flexNew {
+    margin-top: 0px;
+    display: flex !important;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-end;
+}
+
+.Edit table tr {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.form-group {
+    width: 40%;
+}
+
+.flexNew .row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Edit .row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+form#IdCreatFileContent {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+
+
+/*end*/
+.canvas {
+    overflow: hidden;
+}
+
+section.gridAll {
+    padding-top: 80px !important;
+}
+
+body {
+    align-content: flex-start;
+    overflow-y: scroll;
+    /* display: flex;*/
+    flex-direction: row-reverse;
+    height: 100vh;
+    margin: 0px;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    flex-wrap: wrap;
+    background-color: #222d32;
+}
+
+/*  footer {
+            width: 100%;
+            position: relative;
+            bottom: -5%;
+            margin: 0 auto;
+        }
+
+            footer strong {
+                font-size: 15px;
+            }*/
+
+#content-wrapper {
+    width: 80%;
+    height: 100% !important;
+    margin: 20px auto;
+}
+
+.content-wrapper {
+    padding: 0 30px;
+    min-height: 100%;
+    background-color: #ecf0f5;
+    z-index: 800;
+    margin-right: 230px;
+}
+
+/*  .content-wrapper {
+            float: left;
+            transition: transform .3s ease-in-out,margin .3s ease-in-out;
+            width: 85%;
+            z-index: 820;
+        }*/
+
+.skin-blue .sidebar a {
+    color: #b8c7ce;
+    text-decoration: none;
+}
+
+.sidebar-menu > li > a {
+    padding: 12px 5px 12px 15px;
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar-menu li > a {
+    text-align: right;
+    position: relative;
+    text-decoration: none;
+}
+
+.skin-blue .sidebar a {
+    color: #b8c7ce;
+}
+
+.sidebar-menu, .main-sidebar .user-panel, .sidebar-menu > li.header {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* .content-wrapper {
+            position: relative;
+            min-height: 640px !important;
+            background-color: #ecf0f5;
+            z-index: 800;
+        }*/
+
+.text-medium {
+    color: #b8c7ce;
+    font-weight: 500;
+}
+
+.skin-blue .sidebar-menu > li > a {
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu > li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+
+.sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    padding-bottom: 10px;
+}
+
+/*.main-sidebar {
+            float: right;
+            background-color: #222d32;
+            position: absolute !important;
+            top: 0;
+            right: 0;
+            height: 100vh !important;
+            width: 15%;
+            z-index: 810;
+            -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
+            -moz-transition: -moz-transform .3s ease-in-out,width .3s ease-in-out;
+            -o-transition: -o-transform .3s ease-in-out,width .3s ease-in-out;
+            transition: transform .3s ease-in-out,width .3s ease-in-out;
+        }*/
+#main-sidebar {
+    display: block;
+}
+
+.form-group {
+    display: flex;
+    margin: 20px;
+    flex-direction: column;
+}
+
+select#SubjectType {
+    height: 30px;
+}
+/*s*/
+header.main-headerS {
+    width: 100vw;
+    position: fixed;
+    height: 50px;
+    z-index: 100000;
+}
+/**/
+
+
+.transparentAjax {
+    display: none;
+    background: rgb(0,0,0) url('../../Content/Images/loading15.gif') no-repeat center;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    /* Theoretically for IE 8 & 9 (more valid) */
+    /* ...but not required as filter works too */
+    /* should come BEFORE filter */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    /* This works in IE 8 & 9 too */
+    /* ... but also 5, 6, 7 */
+    filter: alpha(opacity=50);
+    /* Older than Firefox 0.9 */
+    -moz-opacity: 0.5;
+    /* Safari 1.x (pre WebKit!) */
+    -khtml-opacity: 0.5;
+    /* Modern!
+         /* Firefox 0.9+, Safari 2?, Chrome any?
+         /* Opera 9+, IE 9+ */
+    opacity: 0.5;
+}
+/*.logo {
+        height: 100%;
+        font-size: 20px;
+        text-align: right;
+        width: 15%;
+        float: right;
+        color: #fff;
+        display: flex;
+        letter-spacing: -0.1px;
+        justify-content: space-around;
+        align-items: center;
+    }*/
+.logo {
+    background-color: #367fa9;
+    color: #fff;
+    border-bottom: 0 solid transparent;
+    transition: none;
+    display: block;
+    float: right;
+    height: 50px;
+    font-size: 15px;
+    line-height: 50px;
+    text-align: center;
+    width: 200px;
+    padding: 0 15px;
+    font-weight: 300;
+    overflow: hidden;
+}
+/*.logo h1 {
+            font-size: 18px;
+            padding: 0px !important;
+            margin: 0px 10px;
+        }*/
+.menuBar {
+    background-color: #3c8dbc;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0;
+    margin-right: 230px;
+    border: none;
+    min-height: 50px;
+    border-radius: 0;
+}
+
+    .menuBar img {
+        margin-right: 20px;
+        height: 20px;
+    }
+
+div#grid {
+    padding-top: 60px;
+}
+
+.main-footer {
+    background: #fff;
+    padding: 15px;
+    color: #444;
+    border-top: 1px solid #d2d6de;
+}
+
+.flexNew .k-widget {
+    width: 100% !important;
+}
+
+.Edit .k-widget {
+    width: 100% !important;
+}
+
+.k-upload .k-upload-button {
+    margin-right: unset !important;
+}
+
+/*</style >*/
+
+@media only screen and (max-width:600px) {
+    .main-sidebar {
+            width: 30% !important;
+        }
+
+        .logo {
+            width: 100% !important;
+        }
+
+        .menuBar {
+            width: 100% !important;
+            margin-right: 0px !important;
+        }
+
+        .logo h1 {
+            font-size: 15px !important;
+        }
+
+        .main-sidebar {
+            position: absolute;
+            top: 110px !important;
+        }
+
+        .content-wrapper {
+            padding: 30px 0px;
+        }
+        .Edit table tr {
+            
+            width: 80%;
+        }
+        .k-upload .k-upload-button {
+          
+            font-size: 10px;
+        }
+        
+        }

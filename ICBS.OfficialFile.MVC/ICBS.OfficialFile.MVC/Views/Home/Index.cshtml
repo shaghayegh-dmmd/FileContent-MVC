@@ -1,0 +1,23 @@
+﻿@using ICBS.OfficialFile.MVC.Models
+@using ICBS.OfficialFile.BLL
+@using System.Net.Mime
+
+@{
+    ViewBag.Title = " فایل های اعتبار سنجی حافظ سامان ایرانیان";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script>
+    var url = "@ViewBag.url";
+
+    $(function() {
+        if (url != null && url != "")
+            mainActionLoadContent(url);
+    });
+
+    function mainActionLoadContent(url, params) {
+        if (url !== "" && url.indexOf("#") === -1 && url != null)
+            $('#content-wrapper').load(url, params);
+    }
+</script>
